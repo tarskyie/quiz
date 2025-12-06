@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Мини-викторина</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/2006-01-28_Drop-impact.jpg/500px-2006-01-28_Drop-impact.jpg" alt="вода" height="100px">
+    <p id="question"></p>
+    <input id="answer" type="text" placeholder="Ваш ответ">
+    <button onclick="next()">Ответить</button>
+    <p id="result"></p>
+    <script>
+        let questions = [
+            "Название высочайшего в мире судоходного озера.",
+            "Как называют водное пространство, расположенное между двумя участками суши и соединяющее смежные водные бассейны или их части?",
+            "В какой стране распологается наибольшее по площади поверхности водохранилище?",
+            "Название левого притока реки Волги?",
+            "В какое море впадает р. Хайхэ?",
+            "Как называется самое большое по площади поверхности солёное озеро Земли?",
+            "Отрасль географии, изучающее болота",
+            "Какой целочисленный процент объёма гидросферы составляют океанические воды?",
+            "В каком году Витус Беринг прошёл по Беринговому проливу?",
+            "Самая северная точка России?"
+        ]
+        let answers = [
+            "Титикака",
+            "пролив",
+            "Гана",
+            "Кама",
+            "Жёлтое",
+            "Каспийское",
+            "Болотоведение",
+            "96%",
+            "1728",
+            "мыс Флигели"
+        ]
+        let current = 0;
+        let score = 0;
+        document.getElementById("question").textContent = questions[current];
+        document.getElementById("result").textContent = current + "/" + questions.length + ", счёт: " + score;
+        function next(){
+            let userAnswer = document.getElementById("answer").value;
+            if (userAnswer.trim().toLowerCase().replace("море", "").trim() === answers[current].toLowerCase().trim()){
+                score++
+            }
+            current++;
+            if(current >= questions.length){
+                document.getElementById("question").textContent = "Викторина закончена";
+                document.getElementById("result").textContent = "Ваш результат: " + score;
+                document.getElementById("answer").style.display = "none";
+                return;
+            }
+            document.getElementById("question").textContent = questions[current];
+            document.getElementById("answer").value = "";
+            document.getElementById("result").textContent = current + "/" + questions.length + ", счёт: " + score;
+        }
+        // let fruits = [1, "apple", "banana", true, false];
+        // console.log(fruits);
+        // console.log(fruits[1]);
+        // fruits.push("orange");
+        // console.log(fruits);
+        // fruits.shift();
+        // console.log(fruits);
+        // let cities = [
+        //     "Moscow",
+        //     "Yakutsk",
+        //     2
+        // ];
+        // console.log(cities)
+        
+    </script>
+</body>
+</html>
